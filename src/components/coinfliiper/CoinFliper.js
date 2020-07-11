@@ -11,7 +11,6 @@ export default class CoinFliper extends Component {
     constructor(props){
         super(props);
         this.state={
-            counter: 0,
             heads: 0,
             tales: 0,
             currentSide: this.props.coins[0]
@@ -21,13 +20,9 @@ export default class CoinFliper extends Component {
     
     handleFlip(){
         const random = Math.floor(Math.random()*2);
-        // console.log(random);
         this.setState({
             currentSide : this.props.coins[random]
         });
-        this.setState(currState => {
-            return {counter : currState.counter + 1}
-        })
         if(random){
             this.setState(currState => {
                 return {heads : currState.heads + 1}
@@ -44,9 +39,7 @@ export default class CoinFliper extends Component {
         return(
             <div className='coinfliper'>
                 <h1>let's flip a coin</h1>
-                <Coin img={this.state.currentSide.img}/>
-                <button onClick={this.handleFlip}>flip!</button>
-                <h3>{`heads: ${this.state.heads} tales: ${this.state.tales} counter: ${this.state.counter}`}</h3>
+                <Coin img={this.state.currentSide.img} heads={this.state.heads} tales={this.state.tales} onClick={this.handleFlip}/>
             </div>
         )
     }
